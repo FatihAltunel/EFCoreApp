@@ -1,0 +1,19 @@
+@using EFCoreApp.Data
+@model Student
+
+<form asp-controller="Student" asp-action="Create" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="mb-3">
+        <label asp-for="StudentName" class="form-label">Student Name:</label>
+        <input type="text" asp-for="StudentName" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label">Student Email:</label>
+        <input type="text" asp-for="Email" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label asp-for="PhoneNumber" class="form-label">Student Phone Number:</label>
+        <input type="text" asp-for="PhoneNumber" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-secondary">Submit</button>
+</form>
