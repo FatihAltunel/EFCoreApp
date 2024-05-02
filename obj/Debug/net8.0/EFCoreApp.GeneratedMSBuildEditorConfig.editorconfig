@@ -18,6 +18,14 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\fatih\Documents\ProgrammingApplications\Web Applications\ASP.NetCore\EFCoreApp
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/fatih/Documents/ProgrammingApplications/Web Applications/ASP.NetCore/EFCoreApp/Views/Course/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/fatih/Documents/ProgrammingApplications/Web Applications/ASP.NetCore/EFCoreApp/Views/Course/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/fatih/Documents/ProgrammingApplications/Web Applications/ASP.NetCore/EFCoreApp/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
