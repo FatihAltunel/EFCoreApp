@@ -32,6 +32,50 @@ namespace EFCoreApp.Controllers
                 return View(course);
             }
         }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int? id){
+            if(id==null){
+                return NotFound();
+            }
+            var course = await _context.Courses.FirstOrDefaultAsync(c => c.CourseId==id);
+            if(course==null){
+                return NotFound();
+            }
+
+            return View("Edit", course);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, Course course){
+         if(id!=course.CourseId){
+            return NotFound();
+         }   
+         if(ModelState.IsValid){
+            _context.Update(course);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+         }
+         return View(course);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int? id){
+            if(id==null){ return NotFound();}
+            var course = await _context.Courses.FirstOrDefaultAsync(c => c.CourseId==id);
+            if(course == null){
+                return NotFound();
+            }
+            return View("Delete", course);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id, Course course){
+            if(id!=course.CourseId){ return NotFound(); }
+            _context.Courses.Remove(course);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
 
     }
 }

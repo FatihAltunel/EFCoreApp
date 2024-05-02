@@ -22,7 +22,7 @@
                     <td>@Html.DisplayFor(m => item.CourseName)</td>
                     <td>
                         <a asp-controller="Course" asp-action="Edit" class="btn btn-sm btn-primary" asp-route-id="@item.CourseId">Edit</a>
-                        <a asp-controller="Student" asp-action="Delete" asp-route-id="@item.CourseId" class="btn btn-sm btn-danger">Delete</a>
+                        <a asp-controller="Course" asp-action="Delete" asp-route-id="@item.CourseId" class="btn btn-sm btn-danger">Delete</a>
                     </td>
                 </tr>
             }
