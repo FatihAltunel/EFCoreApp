@@ -1,13 +1,14 @@
 @using EFCoreApp.Data
 @model Student
 @{
-    ViewData["Title"] = "Create Student";
+    ViewData["Title"] = "Edit Student";
 }
 
 <h2>Student List</h2>
 <hr>
 
-<form asp-controller="Student" asp-action="Create" method="post">
+<form asp-controller="Student" asp-action="Edit" method="post">
+    <input type="hidden" asp-for="StudentId">
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="mb-3">
         <label asp-for="StudentName" class="form-label">Student Name:</label>
