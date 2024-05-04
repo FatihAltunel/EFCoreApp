@@ -1,0 +1,15 @@
+@using EFCoreApp.Data 
+@model Lecturer
+@{
+    ViewData["Title"] = "Delete Lecturer";
+}
+
+<h2>Delete Course Registiration</h2>
+<p>Do you want to delete the lecturer @Model.LecturerName  ?</p>
+<hr>
+
+<form method="post" asp-controller="Lecturer" asp-action="Delete">
+    <input type="hidden" asp-for="LecturerId">
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-controller="Lecturer" asp-action="Index" class="btn btn-primary">Back</a>
+</form>

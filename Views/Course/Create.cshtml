@@ -13,5 +13,11 @@
         <label asp-for="CourseName" class="form-label">Course Name:</label>
         <input type="text" asp-for="CourseName" class="form-control">
     </div>
+    <div class="mb-3">
+        <label asp-for="LecturerId" class="form-label">Course Lecturer</label>
+        <select asp-for="LecturerId" asp-items="ViewBag.Lecturers" class="form-select">
+            <option value="">Select a Lecturer</option>
+        </select>
+    </div>
     <button type="submit" class="btn btn-secondary">Submit</button>
 </form>

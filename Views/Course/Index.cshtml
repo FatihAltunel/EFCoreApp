@@ -1,5 +1,4 @@
 @model IEnumerable<Course>
-    
     @{
         ViewData["Title"] = "Course List";
     }
@@ -12,6 +11,7 @@
             <tr>
                 <td>@Html.DisplayNameFor(m => m.CourseId)</td>
                 <td>@Html.DisplayNameFor(m => m.CourseName)</td>
+                <td>@Html.DisplayNameFor(m => m.lecturer.LecturerName)</td> 
                 <td></td>
             </tr>
         </thead>
@@ -20,6 +20,7 @@
                 <tr>
                     <td>@Html.DisplayFor(m => item.CourseId)</td>
                     <td>@Html.DisplayFor(m => item.CourseName)</td>
+                    <td>@Html.DisplayFor(m => item.lecturer.LecturerName)</td> 
                     <td>
                         <a asp-controller="Course" asp-action="Edit" class="btn btn-sm btn-primary" asp-route-id="@item.CourseId">Edit</a>
                         <a asp-controller="Course" asp-action="Delete" asp-route-id="@item.CourseId" class="btn btn-sm btn-danger">Delete</a>

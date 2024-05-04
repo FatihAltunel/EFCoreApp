@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using EFCoreApp.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 namespace EFCoreApp.Controllers
 {
     public class CourseController:Controller{
@@ -13,22 +14,28 @@ namespace EFCoreApp.Controllers
 
         [HttpGet]
         public async Task<ActionResult> Index(){
-            return View(await _context.Courses.ToListAsync());
+            return View(await _context.Courses.Include(m=>m.lecturer).ToListAsync());
         }
 
         [HttpGet]
-        public ActionResult Create(){
+        public async Task<ActionResult> Create(){
+            var lecturers = await _context.Lecturers.ToListAsync();
+            ViewBag.Lecturers = new SelectList(lecturers, "LecturerId", "LecturerName");
             return View();
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(Course course){
-            if (ModelState.IsValid){
+            if(course==null){return NotFound();}
+            if (!ModelState.IsValid==true){
                 _context.Courses.Add(course);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             else{
+                var lecturers = await _context.Lecturers.ToListAsync();
+                ViewBag.Lecturers = new SelectList(lecturers, "LecturerId", "LecturerName");
                 return View(course);
             }
         }
@@ -38,13 +45,14 @@ namespace EFCoreApp.Controllers
                 return NotFound();
             }
             var course = await _context.Courses
+            .Include(x=>x.lecturer)
             .Include(x => x.CourseRegisters)
             .ThenInclude(x => x.student)
             .FirstOrDefaultAsync(c => c.CourseId==id);
             if(course==null){
                 return NotFound();
             }
-
+            ViewBag.Lecturers = new SelectList(await _context.Lecturers.ToListAsync(),"LecturerId","LecturerName");
             return View("Edit", course);
         }
 
@@ -59,6 +67,7 @@ namespace EFCoreApp.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
          }
+         ViewBag.Lecturers = new SelectList(await _context.Lecturers.ToListAsync(),"LecturerId","LecturerName");
          return View(course);
         }
 

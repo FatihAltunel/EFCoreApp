@@ -17,6 +17,10 @@ namespace EFCoreApp.Data
         [Phone]
         [Display(Name ="Phone Number")]
         public string PhoneNumber{ get; set;}="";
+        [Display(Name ="Starting Date")]
+        [Required]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString ="{0: dd.MM.yyyy}", ApplyFormatInEditMode = false)]
         public DateTime startDate{ get; set;}
         public ICollection<Course>Courses { get; set;} = new List<Course>();
     }

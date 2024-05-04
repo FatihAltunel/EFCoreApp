@@ -1,0 +1,30 @@
+@using EFCoreApp.Data 
+@model Lecturer 
+@{
+    ViewData["Title"] = "Edit Lecturer";
+}
+
+<h2>Edit Lecturer</h2>
+<hr>
+
+<form asp-controller="Lecturer" asp-action="Edit" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input type="hidden" asp-for="LecturerId">
+    <div class="mb-3">
+        <label asp-for="LecturerName" class="form-label">Lecturer Name:</label>
+        <input type="text" asp-for="LecturerName" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label">Lecturer Email:</label>
+        <input type="text" asp-for="Email" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label asp-for="PhoneNumber" class="form-label">Lecturer Phone Number:</label>
+        <input type="text" asp-for="PhoneNumber" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label asp-for="startDate" class="form-label">Select Starting Date</label>
+        <input asp-for="startDate" class="form-select">
+    </div>
+    <button type="submit" class="btn btn-secondary">Submit</button>
+</form>
