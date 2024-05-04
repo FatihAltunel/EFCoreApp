@@ -4,9 +4,15 @@ namespace EFCoreApp.Data
 {
     public class CourseRegister{
         [Key]
+        [Display(Name="Course Register ID")]
         public int CourseRegisterId { get; set;}
+        [Display(Name="Student ID")]
         public int  StudentId { get; set;}
+        public Student student{ get; set;}=null!;
+        [Display(Name="Course ID")]
         public int CourseId{ get; set;} 
+        public Course course{ get; set;}=null!;
+        [Display(Name="Register Date")]
         public DateTime RegsiterDate{ get; set;}
     }
 }

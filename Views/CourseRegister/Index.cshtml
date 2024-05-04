@@ -1,0 +1,42 @@
+@model IEnumerable<CourseRegister>
+@{
+    ViewData["Title"] = "Course Register List";
+}
+
+<h2>Course Register List</h2>
+<hr>
+<a 
+    asp-controller="CourseRegister"
+    asp-action="Create" 
+    class="btn btn-primary mb-3">Create Course Register
+</a>
+
+<table class="table table-bordered text-center">
+    <thead>
+        <tr>
+            <th style="width: 170px;">@Html.DisplayNameFor(m => m.CourseRegisterId)</th>
+            <th style="width: 150px;">@Html.DisplayNameFor(m => m.StudentId)</th>
+            <th>@Html.DisplayNameFor(m => m.student.StudentName)</th>
+            <th style="width: 150px;">@Html.DisplayNameFor(m => m.CourseId)</th>
+            <th>@Html.DisplayNameFor(m => m.course.CourseName)</th>
+            <th>@Html.DisplayNameFor(m => m.RegsiterDate)</th>
+            <th style="width: 150px;"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model){
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.CourseRegisterId)</td>
+                <td>@Html.DisplayFor(modelItem => item.StudentId)</td>
+                <td>@Html.DisplayFor(modelItem => item.student.StudentName)</td>
+                <td style="width: 150px;">@Html.DisplayFor(modelItem => item.CourseId)</td>
+                <td>@Html.DisplayFor(modelItem => item.course.CourseName)</td>
+                <td>@Html.DisplayFor(modelItem => item.RegsiterDate)</td>
+                <td style="width: 150px;">
+                    <a asp-controller="CourseRegister" asp-action="Edit" class="btn btn-sm btn-primary" asp-route-id="@item.CourseRegisterId">Edit</a>
+                    <a asp-controller="CourseRegister" asp-action="Delete" asp-route-id="@item.CourseRegisterId" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
