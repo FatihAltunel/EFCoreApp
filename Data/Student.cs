@@ -17,5 +17,7 @@ namespace EFCoreApp.Data
         [Phone]
         [Display(Name ="Phone Number")]
         public string PhoneNumber { get; set;} = "";
+
+        public ICollection<CourseRegister>CourseRegisters { get; set;} = new List<CourseRegister>();
     }
 }

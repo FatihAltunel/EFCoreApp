@@ -37,7 +37,10 @@ namespace EFCoreApp.Controllers
             if(id==null){
                 return NotFound();
             }
-            var course = await _context.Courses.FirstOrDefaultAsync(c => c.CourseId==id);
+            var course = await _context.Courses
+            .Include(x => x.CourseRegisters)
+            .ThenInclude(x => x.student)
+            .FirstOrDefaultAsync(c => c.CourseId==id);
             if(course==null){
                 return NotFound();
             }

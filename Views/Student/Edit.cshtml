@@ -3,24 +3,35 @@
 @{
     ViewData["Title"] = "Edit Student";
 }
-
-<h2>Edit Student</h2>
-<hr>
-
-<form asp-controller="Student" asp-action="Edit" method="post">
-    <input type="hidden" asp-for="StudentId">
-    <div asp-validation-summary="All" class="text-danger"></div>
-    <div class="mb-3">
-        <label asp-for="StudentName" class="form-label">Student Name:</label>
-        <input type="text" asp-for="StudentName" class="form-control">
+<div class="row">
+    <div class="col-8">
+        <h2>Edit Student</h2>
+        <hr>
+        <form asp-controller="Student" asp-action="Edit" method="post">
+            <input type="hidden" asp-for="StudentId">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="mb-3">
+                <label asp-for="StudentName" class="form-label">Student Name:</label>
+                <input type="text" asp-for="StudentName" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label">Student Email:</label>
+                <input type="text" asp-for="Email" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label asp-for="PhoneNumber" class="form-label">Student Phone Number:</label>
+                <input type="text" asp-for="PhoneNumber" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-secondary">Submit</button>
+        </form>
     </div>
-    <div class="mb-3">
-        <label asp-for="Email" class="form-label">Student Email:</label>
-        <input type="text" asp-for="Email" class="form-control">
+    <div class="col-4">
+        <h3>Courses</h3>
+        <hr>
+        <ul>
+            @foreach(var item in @Model.CourseRegisters){
+                <li>@item.course.CourseName</li>
+            }
+        </ul>
     </div>
-    <div class="mb-3">
-        <label asp-for="PhoneNumber" class="form-label">Student Phone Number:</label>
-        <input type="text" asp-for="PhoneNumber" class="form-control">
-    </div>
-    <button type="submit" class="btn btn-secondary">Submit</button>
-</form>
+</div>

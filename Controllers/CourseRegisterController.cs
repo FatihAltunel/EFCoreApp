@@ -31,11 +31,22 @@ namespace EFCoreApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CourseRegister model){
             if (!ModelState.IsValid){
+                var courseRegister =await _context.CourseRegisters.ToListAsync();
+                if(courseRegister.FirstOrDefault(x=>x.CourseId==model.CourseId && x.StudentId==model.StudentId)!=null){
+                    {
+                        TempData["Message"] = "Course registration already exists.";
+                    }
+                    ViewBag.Students = new SelectList(await _context.Students.ToListAsync(), "StudentId","StudentName"); 
+                    ViewBag.Courses = new SelectList(await _context.Courses.ToListAsync(), "CourseId","CourseName"); 
+                    return View(model);
+                }
                 model.RegsiterDate = DateTime.Now;
                 _context.CourseRegisters.Add(model);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            ViewBag.Students = new SelectList(await _context.Students.ToListAsync(), "StudentId","StudentName"); 
+            ViewBag.Courses = new SelectList(await _context.Courses.ToListAsync(), "CourseId","CourseName"); 
             return View(model);
         }
     }

@@ -9,5 +9,6 @@ namespace EFCoreApp.Data
         [Display(Name = "Course Name")]
         [Required]
         public string CourseName { get; set;} = "";
+        public ICollection<CourseRegister>CourseRegisters { get; set;} = new List<CourseRegister>();
     }
 }
