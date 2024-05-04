@@ -44,7 +44,6 @@ namespace EFCoreApp.Controllers
                     ViewBag.Courses = new SelectList(await _context.Courses.ToListAsync(), "CourseId","CourseName"); 
                     return View(model);
                 }
-                model.RegsiterDate = DateTime.Now;
                 _context.CourseRegisters.Add(model);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -68,14 +67,15 @@ namespace EFCoreApp.Controllers
             return View ("Edit",model);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, CourseRegister model){
-            if(model.CourseRegisterId!=id){
-                return NotFound();
-            }
             if(!_context.CourseRegisters.Any(s => s.CourseRegisterId==model.CourseRegisterId)){
                 return NotFound();
             }
-            if(_context.CourseRegisters.FirstOrDefault(x=> x.CourseId==model.CourseId && x.StudentId==model.StudentId)!=null){
+            if(model.CourseRegisterId!=id){
+                return NotFound();
+            }
+            if(_context.CourseRegisters.FirstOrDefault(x=> x.CourseId==model.CourseId && x.StudentId==model.StudentId && x.RegsiterDate == model.RegsiterDate)!=null){
                     {
                     TempData["Message"] = "Course registration already exists.";
                     }
@@ -83,14 +83,9 @@ namespace EFCoreApp.Controllers
                     ViewBag.Courses = new SelectList(await _context.Courses.ToListAsync(), "CourseId","CourseName"); 
                     return View(model);
             }
-            if(ModelState.IsValid){
-                _context.Update(model);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            ViewBag.Students = new SelectList(await _context.Students.ToListAsync(), "StudentId","StudentName"); 
-            ViewBag.Courses = new SelectList(await _context.Courses.ToListAsync(), "CourseId","CourseName"); 
-            return View(model);
+            _context.Update(model);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
         [HttpGet]
         public async Task<IActionResult> Delete(int? id){

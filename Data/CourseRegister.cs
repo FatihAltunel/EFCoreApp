@@ -15,6 +15,8 @@ namespace EFCoreApp.Data
         public int CourseId{ get; set;} 
         public Course course{ get; set;}=null!;
         [Display(Name="Register Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString ="{0: dd.MM.yyyy}", ApplyFormatInEditMode = false)]
         public DateTime RegsiterDate{ get; set;}
     }
 }
