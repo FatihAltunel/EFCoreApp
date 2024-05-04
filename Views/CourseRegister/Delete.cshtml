@@ -1,0 +1,37 @@
+@using EFCoreApp.Data
+@model CourseRegister
+@{
+    ViewData["Title"] = "Delete Course Registiration";
+}
+
+<h2>Delete Course Registiration</h2>
+<p>Do you want to delete this course registiration from the List ?</p>
+<hr>
+
+<table class="table table-bordered text-center">
+    <thead>
+        <tr>
+            <th style="width: 170px;">@Html.DisplayNameFor(m => m.CourseRegisterId)</th>
+            <th style="width: 150px;">@Html.DisplayNameFor(m => m.StudentId)</th>
+            <th>@Html.DisplayNameFor(m => m.student.StudentName)</th>
+            <th style="width: 150px;">@Html.DisplayNameFor(m => m.CourseId)</th>
+            <th>@Html.DisplayNameFor(m => m.course.CourseName)</th>
+            <th>@Html.DisplayNameFor(m => m.RegsiterDate)</th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <td>@Html.DisplayFor(modelItem => Model.CourseRegisterId)</td>
+                <td>@Html.DisplayFor(modelItem => Model.StudentId)</td>
+                <td>@Html.DisplayFor(modelItem => Model.student.StudentName)</td>
+                <td style="width: 150px;">@Html.DisplayFor(modelItem => Model.CourseId)</td>
+                <td>@Html.DisplayFor(modelItem => Model.course.CourseName)</td>
+                <td>@Html.DisplayFor(modelItem => Model.RegsiterDate)</td>
+            </tr>
+    </tbody>
+</table>
+<form method="post" asp-controller="CourseRegister" asp-action="Delete">
+    <input type="hidden" asp-for="CourseRegisterId">
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-controller="CourseRegister" asp-action="Index" class="btn btn-primary">Back</a>
+</form>

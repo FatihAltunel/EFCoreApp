@@ -14,5 +14,6 @@ namespace EFCoreApp.Data
         public DbSet<Student>Students => Set<Student>();
         public DbSet<Course>Courses => Set<Course>();
         public DbSet<CourseRegister>CourseRegisters => Set<CourseRegister>();
+        public DbSet<Lecturer>Lecturers => Set<Lecturer>();
     }
 }
